@@ -1,23 +1,126 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="57x57" href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/BrasaoItabuna.svg/200px-BrasaoItabuna.svg.png"/>
-    <link rel="apple-touch-icon" sizes="60x60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/BrasaoItabuna.svg/200px-BrasaoItabuna.svg.png"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Usuários - MCPM/IMEAM</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-    <title>MCPM - IMEAM</title>
+    .login-box {
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto;
+      max-width: 150px;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-    <p>
-        <center>
-            <img
-  src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/BrasaoItabuna.svg/200px-BrasaoItabuna.svg.png"
-  width="400"
-  height="341"
-  />
-    <p>
-      <b>Olá Mundo</b>
-        </center>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 login-box">
+        <img class="logo" src="/1/brasaomcpmimeam.png" alt="Logo MCPM/IMEAM"> <!-- Caminho para a imagem da logo -->
+        <h2 class="text-center">MCPM/IMEAM</h2> <!-- Nome da empresa -->
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username">Usuário:</label>
+            <input type="text" class="form-control" id="username" placeholder="Digite seu usuário" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Senha:</label>
+            <input type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
+          </div>
+          <div class="btn-container">
+            <button type="button" class="btn btn-secondary" id="clearButton">Limpar</button>
+            <button type="submit" class="btn btn-primary" id="submitButton">Conectar</button>
+          </div>
+        </form>
+        <p id="accessInfo"></p> <!-- Mensagem de informação sobre a tentativa de acesso -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Boas-Vindas -->
+  <div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="welcomeModalLabel">Bem-vindo!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="welcomeMessage"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="confirmWelcomeButton">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const loginForm = document.getElementById("loginForm");
+
+    loginForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      // Usuários e senhas válidos
+      const users = [
+        { username: "usuario1", password: "senha123", name: "Usuário 1", page: "https://docs.google.com/forms/d/e/1FAIpQLSdPETnDPNl7ddxrEsLFkXPp9axU0VXbZCFGrci-P4Xu82Kf1g/viewform" },
+        { username: "usuario2", password: "abc123", name: "Usuário 2", page: "https://www.google.com/" },
+        { username: "usuario3", password: "qwerty", name: "Usuário 3", page: "https://www.itabuna.ba.gov.br/" }
+      ];
+
+      const user = users.find(u => u.username === username && u.password === password);
+      if (user) {
+        showWelcomeModal(user);
+      } else {
+        alert("Usuário ou senha inválidos. Tente novamente.");
+      }
+    });
+
+    document.getElementById("clearButton").addEventListener("click", function () {
+      document.getElementById("loginForm").reset();
+      document.getElementById("accessInfo").innerText = "";
+    });
+
+    function showWelcomeModal(user) {
+      const welcomeModal = new bootstrap.Modal(document.getElementById("welcomeModal"), {});
+      const accessInfo = `Bem-vindo, ${user.name}!`;
+      document.getElementById("accessInfo").innerText = accessInfo;
+
+      document.getElementById("confirmWelcomeButton").addEventListener("click", function () {
+        window.location.href = user.page; // Redireciona para a página específica após a confirmação do usuário
+      });
+
+      document.getElementById("welcomeMessage").innerText = accessInfo;
+      welcomeModal.show();
+    }
+  </script>
+</body>
 </html>
