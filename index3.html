@@ -31,9 +31,9 @@
                         var dados = linhas[i].split(';');
                         if (dados[0].trim() === matricula.trim()) {
                             // Exibir o nome do aluno
-                            var html = '<strong>Nome do aluno:</strong> ' + dados[1].trim() + '<br>';
+                            var html = '<strong>Nome de Guerra do aluno:</strong> ' + dados[1].trim() + '<br>';
                             // Exibir a série
-                            html += '<strong>Série:</strong> ' + dados[2].trim() + '<br>';
+                            html += '<strong>Turma:</strong> ' + dados[2].trim() + '<br>';
                             // Exibir o tipo sanguíneo
                             html += '<strong>Tipo Sanguíneo:</strong> ' + dados[3].trim() + '<br>';
                             // Atualizar o conteúdo na div
@@ -43,7 +43,7 @@
                         }
                     }
                     if (!encontrado) {
-                        document.getElementById('dadosAluno').innerHTML = 'Aluno não encontrado';
+                        document.getElementById('dadosAluno').innerHTML = 'Dados do aluno não encontrado, por favor entrar em contato com o Vetor Disciplinar.';
                     }
                 }
             };
