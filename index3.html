@@ -24,13 +24,13 @@
                     for (var i = 0; i < linhas.length; i++) {
                         var dados = linhas[i].split(';'); // Separar os dados de cada linha por ponto e vírgula
                         if (dados[0].trim() === matricula.trim()) { // Verificar se a matrícula corresponde
-                            document.getElementById('nomeAluno').innerText = 'Nome do aluno: ' + dados[1].trim(); // Exibir o nome do aluno correspondente
+                            document.getElementById('nomeAluno').innerText = 'NOME DE GUERRA DO ALUNO É: ' + dados[1].trim(); // Exibir o nome do aluno correspondente
                             encontrado = true;
                             break; // Parar a busca, pois o aluno foi encontrado
                         }
                     }
                     if (!encontrado) { // Se a matrícula não foi encontrada
-                        document.getElementById('nomeAluno').innerText = 'Aluno não encontrado';
+                        document.getElementById('nomeAluno').innerText = 'MATRÍCULA NÃO IDENTIFICADA, CONSULTAR O VETOR DISCIPLINAR.';
                     }
                 }
             };
