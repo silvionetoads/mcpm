@@ -4,38 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de Aluno por Matrícula</title>
+    <!-- Adicionando o CSS do Bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Consultar o Nome de Guerra do Aluno por Matrícula</h1>
-    <label for="matricula">Matrícula:</label>
-    <input type="text" id="matricula" name="matricula">
-    <button onclick="consultarAluno()">Consultar</button>
-    <div id="nomeAluno"></div>
+    <div class="container mt-5">
+        <h1 class="mb-4">Consulta de Aluno por Matrícula</h1>
+        <div class="form-group">
+            <label for="matricula">Matrícula:</label>
+            <input type="text" class="form-control" id="matricula" name="matricula">
+        </div>
+        <button class="btn btn-primary" onclick="consultarAluno()">Consultar</button>
+        <div id="dadosAluno" class="mt-3"></div>
+    </div>
 
     <script>
         function consultarAluno() {
             var matricula = document.getElementById('matricula').value;
-            var xhr = new XMLHttpRequest(); // Criar um objeto XMLHttpRequest
-            xhr.open("GET", "alunos.txt", true); // Abrir a requisição
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "alunos.txt", true);
             xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) { // Verificar se a requisição foi bem-sucedida
-                    var linhas = xhr.responseText.split('\n'); // Separar o conteúdo do arquivo por linhas
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var linhas = xhr.responseText.split('\n');
                     var encontrado = false;
                     for (var i = 0; i < linhas.length; i++) {
-                        var dados = linhas[i].split(';'); // Separar os dados de cada linha por ponto e vírgula
-                        if (dados[0].trim() === matricula.trim()) { // Verificar se a matrícula corresponde
-                            document.getElementById('nomeAluno').innerText = 'NOME DE GUERRA DO ALUNO É: ' + dados[1].trim(); // Exibir o nome do aluno correspondente
+                        var dados = linhas[i].split(';');
+                        if (dados[0].trim() === matricula.trim()) {
+                            // Exibir o nome do aluno
+                            var html = '<strong>Nome do aluno:</strong> ' + dados[1].trim() + '<br>';
+                            // Exibir a série
+                            html += '<strong>Série:</strong> ' + dados[2].trim() + '<br>';
+                            // Exibir o tipo sanguíneo
+                            html += '<strong>Tipo Sanguíneo:</strong> ' + dados[3].trim() + '<br>';
+                            // Atualizar o conteúdo na div
+                            document.getElementById('dadosAluno').innerHTML = html;
                             encontrado = true;
-                            break; // Parar a busca, pois o aluno foi encontrado
+                            break;
                         }
                     }
-                    if (!encontrado) { // Se a matrícula não foi encontrada
-                        document.getElementById('nomeAluno').innerText = 'MATRÍCULA NÃO IDENTIFICADA, CONSULTAR O VETOR DISCIPLINAR.';
+                    if (!encontrado) {
+                        document.getElementById('dadosAluno').innerHTML = 'Aluno não encontrado';
                     }
                 }
             };
-            xhr.send(); // Enviar a requisição
+            xhr.send();
         }
     </script>
 </body>
