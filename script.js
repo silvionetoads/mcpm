@@ -26,4 +26,51 @@ document.addEventListener('DOMContentLoaded', () => {
         
         gameBoard.appendChild(cell);
     }
+    let clickCount = 0;
+const clickCountDisplay = document.getElementById('click-count');
+
+cell.addEventListener('click', () => {
+    clickCount++;
+    clickCountDisplay.textContent = clickCount;
+    if (parseInt(cell.dataset.index) === treasurePosition) {
+        cell.classList.add('treasure');
+        alert('Você encontrou o tesouro!');
+    } else {
+        cell.classList.add('clicked');
+        alert('Nada aqui, continue procurando!');
+    }
 });
+
+});
+
+document.getElementById('reset-button').addEventListener('click', () => {
+    clickCount = 0;
+    clickCountDisplay.textContent = clickCount;
+    gameBoard.innerHTML = '';
+    // Regenerate the game board
+    initializeGame();
+});
+
+function initializeGame() {
+    const treasurePosition = Math.floor(Math.random() * totalCells);
+    for (let i = 0; i < totalCells; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.dataset.index = i;
+        cell.addEventListener('click', () => {
+            clickCount++;
+            clickCountDisplay.textContent = clickCount;
+            if (parseInt(cell.dataset.index) === treasurePosition) {
+                cell.classList.add('treasure');
+                alert('Você encontrou o tesouro!');
+            } else {
+                cell.classList.add('clicked');
+                alert('Nada aqui, continue procurando!');
+            }
+        });
+        gameBoard.appendChild(cell);
+    }
+}
+
+initializeGame();
+
