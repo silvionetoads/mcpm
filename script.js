@@ -75,5 +75,5 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
 
-    let game = setInterval(draw, 300);
+    let game = setInterval(draw, 500);
 });
