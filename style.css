@@ -36,3 +36,6 @@ h1 {
 .cell.clicked {
     background-color: #0056b3;
 }
+.cell {
+    transition: background-color 0.3s;
+}
