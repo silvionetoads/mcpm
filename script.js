@@ -73,4 +73,17 @@ function initializeGame() {
 }
 
 initializeGame();
+const messageDisplay = document.getElementById('message');
+
+cell.addEventListener('click', () => {
+    clickCount++;
+    clickCountDisplay.textContent = clickCount;
+    if (parseInt(cell.dataset.index) === treasurePosition) {
+        cell.classList.add('treasure');
+        messageDisplay.textContent = 'Você encontrou o tesouro!';
+    } else {
+        cell.classList.add('clicked');
+        messageDisplay.textContent = 'Nada aqui, continue procurando!';
+    }
+});
 
