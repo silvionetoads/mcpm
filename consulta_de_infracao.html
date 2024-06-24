@@ -2,17 +2,21 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de Infrações de Trânsito</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Consulta de Infrações de Trânsito</h1>
-    <form id="consultaForm">
-        <label for="placa">Placa do Veículo:</label>
-        <input type="text" id="placa" name="placa" required>
-        <button type="submit">Consultar</button>
-    </form>
-    <div id="resultado">
-        <!-- Os resultados da consulta serão exibidos aqui -->
+    <div class="container">
+        <h1 class="my-4">Consulta de Infrações de Trânsito</h1>
+        <form id="consultaForm" class="form-inline mb-4">
+            <label for="placa" class="sr-only">Placa do Veículo:</label>
+            <input type="text" id="placa" name="placa" class="form-control mr-2" placeholder="Placa do Veículo" required>
+            <button type="submit" class="btn btn-primary">Consultar</button>
+        </form>
+        <div id="resultado">
+            <!-- Os resultados da consulta serão exibidos aqui -->
+        </div>
     </div>
     <script src="api.js"></script>
 </body>
