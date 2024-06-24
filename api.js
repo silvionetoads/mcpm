@@ -9,13 +9,13 @@ document.getElementById('consultaForm').addEventListener('submit', function(e) {
             resultadoDiv.innerHTML = '';
 
             const infracoesEncontradas = linhas.filter(linha => {
-                const campos = linha.split(' ');
+                const campos = linha.split(' ; ');
                 return campos[1] === placa;
             });
 
             if (infracoesEncontradas.length > 0) {
                 const table = document.createElement('table');
-                table.border = '1';
+                table.classList.add('table', 'table-bordered', 'mt-4');
 
                 const header = table.insertRow();
                 const headers = ['NR AIT', 'PLACA', 'DT. AUTUAÇÃO', 'INFRAÇÃO', 'LOCAL', 'TIPO', 'DESC. INFRAÇÃO'];
@@ -26,7 +26,7 @@ document.getElementById('consultaForm').addEventListener('submit', function(e) {
                 });
 
                 infracoesEncontradas.forEach(linha => {
-                    const campos = linha.split(' ');
+                    const campos = linha.split(' ; ');
                     const row = table.insertRow();
                     campos.forEach(campo => {
                         const cell = row.insertCell();
@@ -36,7 +36,7 @@ document.getElementById('consultaForm').addEventListener('submit', function(e) {
 
                 resultadoDiv.appendChild(table);
             } else {
-                resultadoDiv.innerHTML = `<p>Nenhuma infração encontrada para a placa: ${placa}</p>`;
+                resultadoDiv.innerHTML = `<p class="alert alert-warning">Nenhuma infração encontrada para a placa: ${placa}</p>`;
             }
         })
         .catch(error => {
