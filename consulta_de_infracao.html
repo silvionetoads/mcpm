@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta de Infrações de Trânsito</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <div class="container">
@@ -12,7 +13,10 @@
         <form id="consultaForm" class="form-inline mb-4">
             <label for="placa" class="sr-only">Placa do Veículo:</label>
             <input type="text" id="placa" name="placa" class="form-control mr-2" placeholder="Placa do Veículo" required>
-            <button type="submit" class="btn btn-primary">Consultar</button>
+            <button type="submit" class="btn btn-primary mr-2">Consultar</button>
+            <button type="button" class="btn btn-secondary" onclick="window.print()">
+                <i class="fas fa-print"></i> Imprimir
+            </button>
         </form>
         <div id="resultado">
             <!-- Os resultados da consulta serão exibidos aqui -->
