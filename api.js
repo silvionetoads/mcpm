@@ -13,7 +13,11 @@ document.getElementById('consultaForm').addEventListener('submit', function(e) {
                 return campos[1] === placa;
             });
 
-            if (infracoesEncontradas.length > 0) {
+            const quantidadeInfracoes = infracoesEncontradas.length;
+
+            if (quantidadeInfracoes > 0) {
+                resultadoDiv.innerHTML = `<p class="alert alert-info">Número de notificações encontradas para a placa ${placa}: ${quantidadeInfracoes}</p>`;
+
                 const table = document.createElement('table');
                 table.classList.add('table', 'table-bordered', 'mt-4');
 
