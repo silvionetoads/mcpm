@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lithos - Escolha de Personagem</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="startScreen" class="screen">
+        <div class="welcome-message">
+            <h1>Bem-vindo ao Lithos!</h1>
+            <p>Prepare-se para a aventura mais épica de todas. Escolha seu herói e entre no mundo da construção!</p>
+        </div>
+        <div class="characters">
+            <div class="character" onclick="selectCharacter('male')">
+                <img src="path/to/male_character.png" alt="Personagem Masculino">
+            </div>
+            <div class="character" onclick="selectCharacter('female')">
+                <img src="path/to/female_character.png" alt="Personagem Feminino">
+            </div>
+        </div>
+        <input type="text" id="playerName" placeholder="Seu nome">
+        <div class="buttons">
+            <button class="confirm-button" onclick="confirmData()">Confirmar</button>
+            <button class="clear-button" onclick="clearData()">Limpar</button>
+        </div>
+    </div>
+
+    <div id="gameScreen" class="screen hidden">
+        <canvas id="gameCanvas" width="600" height="600"></canvas>
+        <div id="dialog" class="hidden">
+            <p id="dialogMessage"></p>
+            <button id="dialogButton"></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
