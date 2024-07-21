@@ -14,19 +14,27 @@ document.addEventListener('DOMContentLoaded', function() {
         { nome: 'Mestre Pedreiro', id: 5 }
     ];
 
-    const pedras = [
-        { nome: 'Granito', id: 1 },
-        { nome: 'Mármore', id: 2 },
-        { nome: 'Basalto', id: 3 },
-        { nome: 'Calcário', id: 4 },
-        { nome: 'Diamante', id: 5 }
-    ];
+    const movePersonagem = (personagem) => {
+        const arena = document.getElementById('arena');
+        const maxX = arena.clientWidth - personagem.clientWidth;
+        const maxY = arena.clientHeight - personagem.clientHeight;
 
-    const containerPessoas = document.getElementById('pessoas');
+        const move = () => {
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            personagem.style.left = `${randomX}px`;
+            personagem.style.top = `${randomY}px`;
+        };
+
+        move();
+        setInterval(move, 2000); // Mover o personagem a cada 2 segundos
+    };
+
+    const containerArena = document.getElementById('arena');
     pessoas.forEach(pessoa => {
         const div = document.createElement('div');
         div.className = 'personagem';
-        div.innerText = pessoa.nome;
+        div.innerText = pessoa.nome[0]; // Mostrando a inicial do nome
         div.dataset.id = pessoa.id;
         div.addEventListener('click', function() {
             if (pessoa.id === 5) {
@@ -37,7 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Esta não é a pessoa correta. Continue procurando.');
             }
         });
-        containerPessoas.appendChild(div);
+        containerArena.appendChild(div);
+        movePersonagem(div);
     });
 
     document.getElementById('prova1').addEventListener('click', function() {
@@ -54,6 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('Prova de Observação completada! Você ganhou 30 pontos.');
         // Adicionar lógica de pontuação
     });
+
+    const pedras = [
+        { nome: 'Granito', id: 1 },
+        { nome: 'Mármore', id: 2 },
+        { nome: 'Basalto', id: 3 },
+        { nome: 'Calcário', id: 4 },
+        { nome: 'Diamante', id: 5 }
+    ];
 
     const containerPedras = document.getElementById('pedras');
     pedras.forEach(pedra => {
@@ -90,4 +107,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
     showFase(currentFase);
 });
-
