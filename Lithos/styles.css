@@ -1,117 +1,76 @@
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
 }
 
 .screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 600px;
-    height: 600px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-}
-
-.hidden {
     display: none;
-}
-
-.welcome-message {
     text-align: center;
-    margin-bottom: 20px;
 }
 
-.welcome-message h1 {
-    font-size: 24px;
-    color: #007bff;
-    margin: 0;
-}
-
-.welcome-message p {
-    font-size: 16px;
-    color: #333;
-    margin: 5px 0 0;
+.screen.hidden {
+    display: none;
 }
 
 .characters {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin-bottom: 20px;
+    justify-content: center;
+    gap: 20px;
 }
 
 .character {
     cursor: pointer;
     padding: 10px;
+    border: 2px solid #333;
+    border-radius: 10px;
+}
+
+.character.selected {
+    border-color: #e63946;
+    background-color: #ffe156;
 }
 
 .character img {
-    width: 150px;
-    height: 150px;
-    border: 2px solid transparent;
-    transition: border-color 0.3s;
-}
-
-.character.selected img {
-    border-color: #000; /* Destaque para o personagem selecionado */
+    width: 100px;
+    height: 100px;
 }
 
 input[type="text"] {
     padding: 10px;
-    margin-bottom: 20px;
-    width: 80%;
+    margin: 10px 0;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.buttons {
-    display: flex;
-    justify-content: flex-start;
-    width: 80%;
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .confirm-button {
-    padding: 10px 20px;
-    margin-right: 10px; /* Espaçamento entre os botões */
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    font-size: 16px;
-    flex: 1; /* Ocupa o máximo espaço disponível */
-}
-
-.confirm-button:hover {
-    background-color: #0056b3;
+    background-color: #2a9d8f;
+    color: white;
+    font-size: 18px;
 }
 
 .clear-button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #6c757d;
-    color: #fff;
-    cursor: pointer;
+    background-color: #e76f51;
+    color: white;
     font-size: 14px;
 }
 
-.clear-button:hover {
-    background-color: #5a6268;
-}
-
 #gameCanvas {
-    border: 1px solid #ddd;
-    background-color: #fff;
+    border: 2px solid #333;
 }
 
 #dialog {
@@ -119,30 +78,12 @@ input[type="text"] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 300px;
+    background-color: white;
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #dialog.hidden {
     display: none;
 }
-
-#dialogButton {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-#dialogButton:hover {
-    background-color: #0056b3;
-}
-
