@@ -6,11 +6,15 @@ const clearButton = document.querySelector('.clear-button');
 const dialog = document.getElementById('dialog');
 const dialogMessage = document.getElementById('dialogMessage');
 const dialogButton = document.getElementById('dialogButton');
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const welcomeMessage = document.getElementById('welcomeMessage');
+const timerElement = document.getElementById('time');
 
 const playerSize = 30;
 const characterSize = 30;
 const characters = [];
-let player = { x: 300, y: 300, color: 'blue' };
+let player = { x: 300, y: 300, color: 'blue', image: null };
 let master = { x: 0, y: 0, found: false };
 
 const names = ['Enoque', 'Adão', 'Caim', 'Mestre'];
@@ -34,6 +38,7 @@ images['Mestre'].src = 'path/to/master.png';
 
 function selectCharacter(gender) {
     player.color = gender === 'male' ? 'blue' : 'pink';
+    player.image = gender === 'male' ? 'path/to/male_character.png' : 'path/to/female_character.png';
     document.querySelectorAll('.character').forEach(el => el.classList.remove('selected'));
     event.currentTarget.classList.add('selected');
 }
@@ -42,33 +47,33 @@ function clearData() {
     playerNameInput.value = '';
     document.querySelectorAll('.character').forEach(el => el.classList.remove('selected'));
     player.color = '';
+    player.image = null;
 }
 
 function confirmData() {
     const name = playerNameInput.value;
-    if (!name || !player.color) {
+    if (!name || !player.color || !player.image) {
         alert('Por favor, preencha todos os campos e selecione um personagem.');
         return;
     }
     localStorage.setItem('playerName', name);
     localStorage.setItem('playerColor', player.color);
+    localStorage.setItem('playerImage', player.image);
     startScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
     initGame();
 }
 
 function initGame() {
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
     characters.length = 0;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     player.x = 300;
     player.y = 300;
 
-    // Draw player
-    ctx.fillStyle = player.color;
-    ctx.fillRect(player.x, player.y, playerSize, playerSize);
+    const playerImg = new Image();
+    playerImg.src = localStorage.getItem('playerImage');
+    playerImg.onload = () => ctx.drawImage(playerImg, player.x, player.y, playerSize, playerSize);
 
     master.x = getRandomPosition();
     master.y = getRandomPosition();
@@ -90,10 +95,11 @@ function initGame() {
         ctx.drawImage(images[c.name], c.x, c.y, characterSize, characterSize);
     });
 
-    ctx.fillStyle = player.color;
-    ctx.fillRect(player.x, player.y, playerSize, playerSize);
+    ctx.drawImage(playerImg, player.x, player.y, playerSize, playerSize);
 
     document.addEventListener('keydown', movePlayer);
+
+    startTimer(300); // 5 minutos = 300 segundos
 }
 
 function getRandomPosition() {
@@ -101,7 +107,6 @@ function getRandomPosition() {
 }
 
 function movePlayer(event) {
-    const canvas = document.getElementById('gameCanvas');
     switch (event.key) {
         case 'ArrowUp':
             player.y = Math.max(0, player.y - 5);
@@ -120,18 +125,15 @@ function movePlayer(event) {
 }
 
 function drawGame() {
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    ctx.drawImage(images['Mestre'], master.x, master.y, characterSize, characterSize);
 
     characters.forEach(c => {
         ctx.drawImage(images[c.name], c.x, c.y, characterSize, characterSize);
     });
 
-    ctx.fillStyle = player.color;
-    ctx.fillRect(player.x, player.y, playerSize, playerSize);
+    const playerImg = new Image();
+    playerImg.src = localStorage.getItem('playerImage');
+    playerImg.onload = () => ctx.drawImage(playerImg, player.x, player.y, playerSize, playerSize);
 
     checkCollision();
 }
@@ -161,7 +163,7 @@ function showDialog(message, yesText, noText) {
     dialogButton.onclick = () => {
         if (yesText) {
             dialog.classList.add('hidden');
-            // Proceed to next stage
+            // Proceed to next stage or restart
         } else {
             dialog.classList.add('hidden');
             startScreen.classList.remove('hidden');
@@ -175,3 +177,19 @@ function getRandomMessage() {
     return messages[Math.floor(Math.random() * messages.length)];
 }
 
+let timerInterval;
+
+function startTimer(seconds) {
+    let remainingTime = seconds;
+    timerInterval = setInterval(() => {
+        const minutes = Math.floor(remainingTime / 60);
+        const secs = remainingTime % 60;
+        timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        remainingTime--;
+        if (remainingTime < 0) {
+            clearInterval(timerInterval);
+            alert('Tempo esgotado! O jogo acabou.');
+            // Optionally, handle what happens when time is up
+        }
+    }, 1000);
+}
