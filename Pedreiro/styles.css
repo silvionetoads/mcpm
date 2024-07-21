@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game-container {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.fase {
+    display: none;
+}
+
+#timer {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+#arena {
+    width: 600px;
+    height: 600px;
+    border: 1px solid #ccc;
+    position: relative;
+    background-color: #f4f4f4;
+    margin: 20px auto;
+}
+
+.personagem, .player {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.player {
+    background-image: url('path/to/player-sprite.png');
+    animation: walk 1s steps(4) infinite;
+}
+
+.personagem-1 {
+    background-image: url('path/to/sprite1.png');
+    animation: walk 1s steps(4) infinite;
+}
+
+.personagem-2 {
+    background-image: url('path/to/sprite2.png');
+    animation: walk 1s steps(4) infinite;
+}
+
+.personagem-3 {
+    background-image: url('path/to/sprite3.png');
+    animation: walk 1s steps(4) infinite;
+}
+
+.personagem-4 {
+    background-image: url('path/to/sprite4.png');
+    animation: walk 1s steps(4) infinite;
+}
+
+.personagem-5 {
+    background-image: url('path/to/sprite5.png');
+    animation: walk 1s steps(4) infinite;
+}
+
+@keyframes walk {
+    from {
+        background-position: 0;
+    }
+    to {
+        background-position: -160px; /* 40px * 4 frames */
+    }
+}
+
+#pessoas, #pedras, #lapidacao {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pedra {
+    margin: 10px;
+    padding: 20px;
+    background: #eaeaea;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
