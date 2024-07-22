@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let posX = 325; // Posição inicial horizontal do jogador
     let posY = 325; // Posição inicial vertical do jogador
 
+    // Adiciona o som de colisão
+    const collisionSound = new Audio('path/to/collision.mp3');
+
     function movePlayer(dx, dy) {
         const newX = posX + dx;
         const newY = posY + dy;
@@ -61,6 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleCollision(stone) {
+        // Reproduz o som de colisão
+        collisionSound.play();
+
         // Remove a pedra após a colisão
         stone.style.display = 'none';
         progress -= 1;
@@ -154,9 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Adiciona eventos para botões de controle móveis
+    document.getElementById('btnUp').addEventListener('click', () => movePlayer(0, -step));
+    document.getElementById('btnDown').addEventListener('click', () => movePlayer(0, step));
+    document.getElementById('btnLeft').addEventListener('click', () => movePlayer(-step, 0));
+    document.getElementById('btnRight').addEventListener('click', () => movePlayer(step, 0));
+
     // Posiciona as pedras aleatoriamente ao carregar a página
     positionStones();
     // Atualiza a barra de progresso inicial
     updateProgressBar();
 });
-
