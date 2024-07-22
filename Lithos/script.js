@@ -151,6 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', handleKeyDown);
     } else {
         // Adiciona o evento de toque em dispositivos móveis
-        document.getElementById('controls').style.display = 'flex'; // Exibe os controles móveis
+        controls.style.display = 'flex'; // Exibe os controles móveis
     }
 });
