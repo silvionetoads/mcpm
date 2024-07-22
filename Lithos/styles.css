@@ -11,6 +11,7 @@ body {
     overflow: hidden;
     border: 2px solid #2980b9; /* Borda do jogo */
     margin-top: 20px;
+    box-sizing: border-box; /* Inclui a borda no cálculo da largura/altura */
 }
 
 #player {
@@ -70,6 +71,7 @@ body {
     text-align: center;
 }
 
+/* Estilos para os botões de controle */
 #controls {
     display: none; /* Oculta os controles por padrão */
     position: fixed;
@@ -94,9 +96,27 @@ body {
     outline: none;
 }
 
+@media (min-width: 769px) {
+    #gameArea {
+        width: 700px;
+        height: 700px;
+    }
+    #player {
+        width: 50px;
+        height: 50px;
+    }
+    .stone {
+        width: 50px;
+        height: 50px;
+    }
+    #controls {
+        display: none; /* Oculta os controles em telas grandes */
+    }
+}
+
 @media (max-width: 768px) {
     #controls {
-        display: flex;
+        display: flex; /* Exibe os controles em telas pequenas */
     }
 
     #player {
