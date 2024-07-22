@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const levelText = document.getElementById('levelText');
     const messageContainer = document.getElementById('messageContainer');
     const continueButton = document.getElementById('continueButton');
+    const controls = document.getElementById('controls');
     const step = 5; // Quantidade de pixels que o jogador se move a cada vez
     let totalStones = 1; // Quantidade inicial de pedras
     let progress = 10; // Pontos iniciais
@@ -14,8 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let posX = 325; // Posição inicial horizontal do jogador
     let posY = 325; // Posição inicial vertical do jogador
 
-    // Adiciona o som de colisão
+    // Adiciona os sons
     const collisionSound = new Audio('path/to/collision.mp3');
+    const levelUpSound = new Audio('path/to/level-up.mp3');
 
     function movePlayer(dx, dy) {
         const newX = posX + dx;
@@ -64,12 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleCollision(stone) {
-        // Reproduz o som de colisão
-        collisionSound.play();
-
         // Remove a pedra após a colisão
         stone.style.display = 'none';
         progress -= 1;
+
+        // Toca o som de colisão
+        collisionSound.play();
 
         if (progress < 0) {
             progress = 0;
@@ -98,6 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showSuccessMessage() {
         messageContainer.classList.remove('d-none');
+        // Toca o som de nível
+        levelUpSound.play();
     }
 
     function addMoreStones() {
@@ -120,55 +124,36 @@ document.addEventListener('DOMContentLoaded', () => {
         const y = Math.floor(Math.random() * (gameArea.clientHeight - stone.clientHeight));
         stone.style.left = `${x}px`;
         stone.style.top = `${y}px`;
-        stone.style.display = 'block'; // Garante que a pedra está visível
     }
 
-    function resetLevel() {
-        progress = Math.ceil(10 * 0.7); // Reduz a barra de progresso em 30%
-        updateProgressBar();
-        totalStones = Math.min(1 + (level - 1) * 2, 7); // Aumenta as pedras de acordo com o nível, no máximo 7
-        addMoreStones();
-        level += 1; // Avança o nível
-        levelText.textContent = `Nível: ${level}`;
-    }
-
-    continueButton.addEventListener('click', () => {
-        messageContainer.classList.add('d-none');
-        // Define o progresso inicial como 3 pontos
-        progress = 3;
-        updateProgressBar();
-        resetLevel();
-    });
-
-    document.addEventListener('keydown', (e) => {
-        switch (e.key) {
+    function handleKeyDown(event) {
+        switch (event.key) {
             case 'ArrowUp':
                 movePlayer(0, -step);
-                player.style.transform = 'scaleX(1)'; // Direita
                 break;
             case 'ArrowDown':
                 movePlayer(0, step);
                 break;
             case 'ArrowLeft':
                 movePlayer(-step, 0);
-                player.style.transform = 'scaleX(-1)'; // Esquerda
                 break;
             case 'ArrowRight':
                 movePlayer(step, 0);
-                player.style.transform = 'scaleX(1)'; // Direita
                 break;
         }
-    });
+    }
 
-    // Adiciona eventos para botões de controle móveis
+    // Eventos de clique para botões móveis
     document.getElementById('btnUp').addEventListener('click', () => movePlayer(0, -step));
     document.getElementById('btnDown').addEventListener('click', () => movePlayer(0, step));
     document.getElementById('btnLeft').addEventListener('click', () => movePlayer(-step, 0));
     document.getElementById('btnRight').addEventListener('click', () => movePlayer(step, 0));
 
-    // Posiciona as pedras aleatoriamente ao carregar a página
-    positionStones();
-    // Atualiza a barra de progresso inicial
-    updateProgressBar();
+    // Adiciona o evento de teclado apenas em dispositivos maiores
+    if (window.innerWidth > 768) {
+        document.addEventListener('keydown', handleKeyDown);
+    } else {
+        // Adiciona o evento de toque em dispositivos móveis
+        controls.style.display = 'flex'; // Exibe os controles móveis
+    }
 });
-
