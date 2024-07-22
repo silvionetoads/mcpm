@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+#startScreen {
+    text-align: center;
+}
+
+.character {
+    display: inline-block;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.character img {
+    width: 100px;
+    height: 100px;
+}
+
+.character.selected {
+    border: 2px solid gold;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+}
+
+.confirm-button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+}
+
+.clear-button {
+    background-color: #f44336;
+    color: white;
+    font-size: 12px;
+}
+
+#gameScreen {
+    position: relative;
+}
+
+#gameCanvas {
+    border: 1px solid #000;
+}
+
+#dialog {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#dialog.hidden {
+    display: none;
+}
+
+.game-info {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#timer {
+    font-size: 24px;
+    font-weight: bold;
+}
+
