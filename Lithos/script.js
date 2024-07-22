@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const levelText = document.getElementById('levelText');
     const messageContainer = document.getElementById('messageContainer');
     const continueButton = document.getElementById('continueButton');
+    const controls = document.getElementById('controls');
     const step = 5; // Quantidade de pixels que o jogador se move a cada vez
     let totalStones = 1; // Quantidade inicial de pedras
     let progress = 10; // Pontos iniciais
@@ -122,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         stone.style.top = `${y}px`;
     }
 
-    document.addEventListener('keydown', (event) => {
+    function handleKeyDown(event) {
         switch (event.key) {
             case 'ArrowUp':
                 movePlayer(0, -step);
@@ -137,11 +138,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 movePlayer(step, 0);
                 break;
         }
-    });
+    }
 
     // Eventos de clique para botões móveis
     document.getElementById('btnUp').addEventListener('click', () => movePlayer(0, -step));
     document.getElementById('btnDown').addEventListener('click', () => movePlayer(0, step));
     document.getElementById('btnLeft').addEventListener('click', () => movePlayer(-step, 0));
     document.getElementById('btnRight').addEventListener('click', () => movePlayer(step, 0));
+
+    // Adiciona o evento de teclado apenas em dispositivos maiores
+    if (window.innerWidth > 768) {
+        document.addEventListener('keydown', handleKeyDown);
+    } else {
+        // Adiciona o evento de toque em dispositivos móveis
+        document.getElementById('controls').style.display = 'flex'; // Exibe os controles móveis
+    }
 });
