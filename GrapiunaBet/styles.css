@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #007bff; /* Azul forte */
+    color: #fff;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.25rem;
+}
+
+.game-info {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.game-info .card-body {
+    text-align: center;
+}
+
+.game-info .btn-primary {
+    background-color: #28a745;
+    border: none;
+}
+
+.game-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.team {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.team-logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.vs {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.promotion {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.promotion img {
+    max-width: 100%;
+    border-bottom: 2px solid #007bff;
+}
+
+.promotion .card-body {
+    text-align: center;
+}
+
+.promotion .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+footer {
+    background-color: #343a40; /* Cinza escuro */
+    color: #fff;
+}
+
+/* Adicionando um estilo específico para a página de apostas */
+.bet-form {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.bet-form .card-body {
+    text-align: center;
+}
+
+.bet-form .btn-primary {
+    background-color: #28a745;
+    border: none;
+}
+
