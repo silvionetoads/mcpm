@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minerador de Monero</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Minerador de Monero</h1>
+        
+        <div class="form-group">
+            <label for="walletAddress">Endereço da Carteira:</label>
+            <input type="text" id="walletAddress" class="form-control" placeholder="Insira seu endereço de carteira" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="miningPower">Poder de Mineração:</label>
+            <input type="range" id="miningPower" class="form-control-range" min="1" max="8" step="1" value="4">
+            <small>Use o controle deslizante para ajustar seu poder de mineração (1 a 8 threads).</small>
+        </div>
+        
+        <div>
+            <button id="startMining" class="btn btn-success">Iniciar Mineração</button>
+            <button id="stopMining" class="btn btn-danger" disabled>Parar Mineração</button>
+        </div>
+        
+        <div>
+            <p>Taxa de Hash: <span id="hashRate">0 H/s</span></p>
+            <p>Monero Minerado: <span id="moneroMined">0 XMR</span></p>
+            <p>Utilização da CPU: <span id="cpuUsage">0 %</span></p>
+        </div>
+    </div>
+    <script src="base.js"></script> <!-- Certifique-se de que este arquivo está no mesmo diretório -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+body {
+    font-family: 'Press Start 2P', cursive; /* Fonte estilo retrô */
+    background-color: #3a3a3a; /* Fundo escuro para contraste */
+    color: #ffffff; /* Texto branco */
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #222; /* Fundo do container mais claro */
+    border: 3px solid #ffcc00; /* Borda amarela */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5); /* Sombra amarelada */
+}
+
+h1 {
+    font-size: 32px;
+    text-align: center;
+    text-shadow: 2px 2px 0 #ffcc00; /* Sombra para o texto */
+}
+
+label, input, button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+input[type="text"], input[type="range"] {
+    border: 2px solid #ffcc00; /* Borda amarela */
+    background-color: #444; /* Fundo do input */
+    color: #fff; /* Texto branco */
+}
+
+button {
+    background-color: #ffcc00; /* Fundo amarelo */
+    color: #222; /* Texto escuro */
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ffd700; /* Amarelo mais claro ao passar o mouse */
+}
+
+.panel {
+    background-color: #444; /* Fundo do painel */
+    border: 2px solid #ffcc00; /* Borda do painel */
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.panel h2 {
+    margin: 0;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 0 #ffcc00; /* Sombra para o texto */
+}
+
+.panel p {
+    margin: 5px 0;
+}
