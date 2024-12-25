@@ -77,3 +77,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let game = setInterval(draw, 500);
 });
+
+function mudarCor(){
+    var paragrafo = document.getElementById('olamundo');
+    paragrafo.style.color='green';
+    paragrafo.innerHTML='Olá Mundo';
+}
+
+
+
+
+
+
+
+
+
