@@ -1,20 +1,15 @@
-function atualizarRelogio() {
-    const elementoRelogio = document.getElementById('relogio');
-    if (!elementoRelogio) {
-        console.error('Elemento com id "relogio" não encontrado no HTML.');
-        return;
+// Exibe uma mensagem "Olá Mundo" no console do navegador
+console.log("Olá Mundo");
+
+// Insere a mensagem "Olá Mundo" no elemento com id "mensagem"
+function exibirMensagem() {
+    const elemento = document.getElementById('mensagem');
+    if (elemento) {
+        elemento.textContent = "Olá Mundo";
+    } else {
+        console.error("Elemento com id 'mensagem' não encontrado no HTML.");
     }
-
-    const agora = new Date();
-    const horas = agora.getHours().toString().padStart(2, '0');
-    const minutos = agora.getMinutes().toString().padStart(2, '0');
-    const segundos = agora.getSeconds().toString().padStart(2, '0');
-
-    elementoRelogio.textContent = `${horas}:${minutos}:${segundos}`;
 }
 
-// Atualiza o relógio a cada segundo
-setInterval(atualizarRelogio, 1000);
-
-// Inicializa o relógio imediatamente ao carregar o script
-atualizarRelogio();
+// Executa a função ao carregar o script
+exibirMensagem();
